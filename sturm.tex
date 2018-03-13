@@ -1,0 +1,642 @@
+\documentclass{article}
+
+%% Created with wxMaxima 15.08.2
+
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{00B5}{\ensuremath{\mu}}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newsavebox{\picturebox}
+\newlength{\pictureboxwidth}
+\newlength{\pictureboxheight}
+\newcommand{\includeimage}[1]{
+    \savebox{\picturebox}{\includegraphics{#1}}
+    \settoheight{\pictureboxheight}{\usebox{\picturebox}}
+    \settowidth{\pictureboxwidth}{\usebox{\picturebox}}
+    \ifthenelse{\lengthtest{\pictureboxwidth > .95\linewidth}}
+    {
+        \includegraphics[width=.95\linewidth,height=.80\textheight,keepaspectratio]{#1}
+    }
+    {
+        \ifthenelse{\lengthtest{\pictureboxheight>.80\textheight}}
+        {
+            \includegraphics[width=.95\linewidth,height=.80\textheight,keepaspectratio]{#1}
+            
+        }
+        {
+            \includegraphics{#1}
+        }
+    }
+}
+\DeclareMathOperator{\abs}{abs}
+\usepackage{animate} % This package is required because the wxMaxima configuration option
+                      % "Export animations to TeX" was enabled when this file was generated.
+
+\definecolor{labelcolor}{RGB}{100,0,0}
+
+\begin{document}
+
+\pagebreak{}
+{\Huge {\sc Sucesión de Sturm}}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{figure}{0}
+
+
+Asignamos a s(x) el polinomio a partir del cual queremos obtener la sucesión de Sturm.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+ s(x) := x^4 + 2*x^3 -3*x^2 -4*x-1;
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o187) }\quad $}
+\mathrm{s}\left( x\right) :=-1-4\cdot x-3\cdot {{x}^{2}}+2\cdot {{x}^{3}}+{{x}^{4}}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+p(x) := s(x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o188) }\quad $}
+\mathrm{p}\left( x\right) :=\mathrm{s}\left( x\right) \mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Definimos el primero término de la sucesión.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+ f1(x) := s(x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o189) }\quad $}
+\mathrm{f1}\left( x\right) :=\mathrm{s}\left( x\right) \mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Definimos el segundo elemento de la sucesión derivando el anterior.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+define(f2(x),diff(s(x), x, 1));
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o190) }\quad $}
+\mathrm{f2}\left( x\right) :=4\cdot {{x}^{3}}+6\cdot {{x}^{2}}-6\cdot x-4\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Creamos la lista que va a tener todos los elementos de la sucesión.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+f(x):=[f1(x),f2(x)];
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o191) }\quad $}
+\mathrm{f}\left( x\right) :=[\mathrm{f1}\left( x\right) ,\mathrm{f2}\left( x\right) ]\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+f(x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o192) }\quad $}
+[{{x}^{4}}+2\cdot {{x}^{3}}-3\cdot {{x}^{2}}-4\cdot x-1,4\cdot {{x}^{3}}+6\cdot {{x}^{2}}-6\cdot x-4]\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Obtenemos el término i de la sucesión dividiendo el término i-2 entre el i-1. El término i será el resto cambiado de signo.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+ for i:3 while (hipow(p(x),x) > 0) do(
+    define(p(x),-divide(f(x)[i-2],f(x)[i-1])[2]),
+    define(f(x), append(f(x),[p(x)]))
+);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o193) }\quad $}
+\mathit{done}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Se muestra la lista con los términos de la sucesión.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+f(x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o194) }\quad $}
+[{{x}^{4}}+2\cdot {{x}^{3}}-3\cdot {{x}^{2}}-4\cdot x-1,4\cdot {{x}^{3}}+6\cdot {{x}^{2}}-6\cdot x-4,\frac{2+9\cdot x+9\cdot {{x}^{2}}}{4},\frac{40+80\cdot x}{9},\frac{1}{16}]\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+num contendrá el valor donde se evaluará los términos de la sucesión.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+num : -5;
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o197) }\quad $}
+-5\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Se contabiliza el número de cambios de signos que se producen en la sucesión evaluada en num y se guarda en cont.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+cont : 0;
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o198) }\quad $}
+0\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+for i:1 thru (length(f(x))-1) do(
+    if f(num)[i]*f(num)[i+1] < 0 then (
+        cont : cont + 1
+    )
+);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o200) }\quad $}
+\mathit{done}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+Muestra cont.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+cont;
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o201) }\quad $}
+4\mbox{}
+\]
+%%%%%%%%%%%%%%%
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%	EJERCICIO 14
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\Huge {\sc Ejercicio 14}}\\
+
+Considera el polinomio $p(x) = 2x^5 - x^4 - 4x^3 + 2x^2 - 6x + 3$.\\
+a) Calcula una sucesión de Sturm asociada a $p(x)$.\\
+
+$$f_0(x) = 2\cdot {{x}^{5}}-{{x}^{4}}+4\cdot {{x}^{3}}+2\cdot {{x}^{2}}-6\cdot x+3$$\\
+$$f_1(x) = 10\cdot {{x}^{4}}-4\cdot {{x}^{3}}+12\cdot {{x}^{2}}+4\cdot x-6$$\\
+$$f_2(x) = -\frac{72-118\cdot x+36\cdot {{x}^{2}}+38\cdot {{x}^{3}}}{25}$$\\
+$$f_3(x) = -\frac{7050-20500\cdot x+20150\cdot {{x}^{2}}}{361}$$\\
+$$f_4(x) = -\frac{8987456\cdot x-7451040}{4060225}$$\\
+$$f_5(x) = \frac{1181525475}{109253762}$$\\
+\\
+
+b) Halla una cota superior e inferior de las raíces de $p(x)$.\\
+
+c) Localiza todas las raíces reales de $p(x)$ en un intervalo cada una.\\
+
+\begin{table}[h]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+                            & -4 & 4 \\ \hline
+Número de  cambios de signo & 4  & 1 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+                            & -4 & 0 & 4 \\ \hline
+Número de  cambios de signo & 4  & 3 & 1 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+                            & 0 & 2 & 4 \\ \hline
+Número de  cambios de signo & 3 & 1 & 1 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+                            & 0 & 1 & 2 \\ \hline
+Número de  cambios de signo & 3 & 2 & 1 \\ \hline
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%	EJERCICIO 18
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\Huge {\sc Ejercicio 18}}\\
+
+Considera el sistema de ecuaciones:
+$$g(x) = \left\{
+\begin{array}{c l}
+ 3x_1 - cos(x_2x_3) - \frac{1}{2}        &= 0\\
+ x_1^2 - 81(x_2+0.1)^2 + sin(x_3) + 1.06 &= 0\\
+ e^{-x_1x_2} + 20x_3 + \frac{10\pi-3}{3} &= 0
+\end{array}
+\right.
+$$
+
+a) Escribe el sistema anterior en la forma $x = g(x)$ despejando en la ecuación $i$ la variable $x_i$ , $i = 1, 2, 3$.
+
+$$g(x) = \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3     
+\end{pmatrix}
+=\begin{pmatrix}
+    \frac{cos(x_2x_3)+\frac{1}{2}}{3} \\
+    \sqrt{\frac{sin(x_3)+x_1^2+1.06}{81}}-0.1 \\
+    \frac{e^{-x_1x_2}+ \frac{10\pi-3}{3}}{-20}     
+\end{pmatrix}$$
+
+b) Demuestra, utilizando el resultado del ejercicio anterior que el sistema de ecuaciones tiene una única solución en
+$$D = \{(x_1 , x_2 , x_3) \in \mathbb{R}^3 | 1 \le x_i \le 1, i = 1, 2, 3\}$$
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g1(x,y,z),x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o33) }\quad $}
+0\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g1(x,y,z),y);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o34) }\quad $}
+-\frac{z\cdot \mathrm{sin}\left( y\cdot z\right) }{3}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g1(x,y,z),z);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o35) }\quad $}
+-\frac{y\cdot \mathrm{sin}\left( y\cdot z\right) }{3}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g2(x,y,z),x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o36) }\quad $}
+\frac{x}{9\cdot \sqrt{\mathrm{sin}\left( z\right) +{{x}^{2}}+1.06}}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g2(x,y,z),y);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o37) }\quad $}
+0\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g2(x,y,z),z);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o38) }\quad $}
+\frac{\mathrm{cos}\left( z\right) }{18\cdot \sqrt{\mathrm{sin}\left( z\right) +{{x}^{2}}+1.06}}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g3(x,y,z),x);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o39) }\quad $}
+\frac{\mathrm{log}\left( e\right) \cdot y}{20\cdot {{e}^{x\cdot y}}}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g3(x,y,z),y);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o40) }\quad $}
+\frac{\mathrm{log}\left( e\right) \cdot x}{20\cdot {{e}^{x\cdot y}}}\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{minipage}[t]{8ex}\color{red}\bf
+\begin{verbatim}
+-->  
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}\color{blue}
+\begin{verbatim}
+diff(g3(x,y,z),z);
+\end{verbatim}
+\end{minipage}
+%%% OUTPUT:
+
+\[\displaystyle
+\parbox{10ex}{$\color{labelcolor}\mathrm{\tt (\%o41) }\quad $}
+0\mbox{}
+\]
+%%%%%%%%%%%%%%%
+
+c) Calcula una aproximación de la solución con el método de iteración funcional
+tomando $x^{(0)}$ = (0.1, 0.1, -0.1) con una tolerancia fijada de $10^{-5}$, donde la tolerancia viene dada por la norma infinito de la diferencia de dos aproximaciones sucesivas.
+
+d) Sabiendo que la solución del sistema es $x^{*} = \left(0.5, 0, \frac{-\pi}{6}\right)$ calcula el error absoluto cometido en la aproximación obtenida.
+
+
+e) Calcula, utilizando la cota teórica del método de iteración funcional, el número de iteraciones necesarias para asegurar un error absoluto menor que $10^{-5}$ ¿Qué conclusión extraes?
+
+
+\end{document}
